@@ -55,12 +55,12 @@ int main() {
         }
     }
     
-    cout << endl << "Side 1, appeared " << one << " times with percentage of " << setprecision(2) << doMath(one, nAux) << "%." << endl;
-    cout << "Side 2, appeared " << two << " times with percentage of " << setprecision(2) << doMath(two, nAux) << "%." << endl;
-    cout << "Side 3, appeared " << three << " times with percentage of " << setprecision(2) << doMath(three, nAux) << "%." << endl;
-    cout << "Side 4, appeared " << four << " times with percentage of " << setprecision(2) << doMath(four, nAux) << "%." << endl;
-    cout << "Side 5, appeared " << five << " times with percentage of " << setprecision(2) << doMath(five, nAux) << "%." << endl;
-    cout << "Side 6, appeared " << six << " times with percentage of " << setprecision(2) << doMath(six, nAux) << "%." << endl << endl;
+    cout << endl << "Side 1, appeared " << one << " times with percentage of " << fixed << setprecision(2) << doMath(one, nAux) << "%." << endl;
+    cout << "Side 2, appeared " << two << " times with percentage of " << fixed << setprecision(2) << doMath(two, nAux) << "%." << endl;
+    cout << "Side 3, appeared " << three << " times with percentage of " << fixed << setprecision(2) << doMath(three, nAux) << "%." << endl;
+    cout << "Side 4, appeared " << four << " times with percentage of " << fixed << setprecision(2) << doMath(four, nAux) << "%." << endl;
+    cout << "Side 5, appeared " << five << " times with percentage of " << fixed << setprecision(2) << doMath(five, nAux) << "%." << endl;
+    cout << "Side 6, appeared " << six << " times with percentage of " << fixed << setprecision(2) << doMath(six, nAux) << "%." << endl << endl;
     
     return 0;
 }
