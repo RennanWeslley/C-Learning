@@ -25,7 +25,7 @@ int main() {
     cout << "--------------------------------" << endl;
     cout << "Exes Total Value: $ " << fixed << setprecision(2) << exesControl.computeTotalExes() << endl;
     cout << "Sharing Type \"I dunno\": "; exesControl.shareType("I dunno")? cout << "True" << endl : cout << "False" << endl;
-    cout << "Sharing Type \"I know\".: ";  exesControl.shareType("I know")? cout << "True" << endl : cout << "False" << endl;
+    cout << "Sharing Type \"I know\".: "; exesControl.shareType("I know")? cout << "True" << endl : cout << "False" << endl;
     cout << "--------------------------------" << endl << endl;
     
     return 0;
