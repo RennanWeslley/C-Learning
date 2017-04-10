@@ -26,8 +26,8 @@ int main() {
         individuals.push_back(*individual);
     }
     
-    for(int i = 0; i < MAX; i++)
-        cout << endl << individuals[i].toString() << endl << endl;
+    for(int i = 0; i < individuals.size(); i++)
+        cout << endl << individuals[i].toString() << endl;
     */
     
     Person individual_1("Anybody", "25", "555-36541205");

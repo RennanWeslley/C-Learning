@@ -1,3 +1,4 @@
+#include <string>
 #include "Person.h"
 
 Person::Person(string name) {
