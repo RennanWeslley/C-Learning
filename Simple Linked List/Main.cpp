@@ -1,3 +1,10 @@
+/*
+ *  Main.cpp
+ *
+ *  Created on: May 7th, 2017.
+ *  Author: Rennan Weslley
+ */
+
 #include "Lista.h"
 
 int main() {
