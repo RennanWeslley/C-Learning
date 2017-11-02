@@ -17,7 +17,7 @@ int main() {
     /*
         Recebe Dados do Usuário;
         
-        Seta L como o total de dados digitados. (Ex: L = total de estilos músicais citados pelo user)
+        int L = data.size(); //Seta L como o total de dados digitados. (Ex: L = total de estilos músicais citados pelo user)
         
         Realiza os cálculos necessãrios;
         
