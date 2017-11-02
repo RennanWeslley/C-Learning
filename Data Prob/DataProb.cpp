@@ -5,8 +5,6 @@
 
 #define COL 5
 
-using namespace std;
-
 string lineData[COL] = {"Data Type", "Freq.Abs.", "Freq.Rel.", "Freq.Rel.(%)", "Freq.Rel.Ac."};
 
 void drawTable(int, string *);
