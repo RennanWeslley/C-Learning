@@ -7,7 +7,7 @@
 
 string lineData[COL] = {"Data Type", "Freq.Abs.", "Freq.Rel.", "Freq.Rel.(%)", "Freq.Rel.Ac."};
 
-void drawTable(int, string *);
+void drawTable(int, vector<Data>);
 
 int main() {
     vector<Data> data;
