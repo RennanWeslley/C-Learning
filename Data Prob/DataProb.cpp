@@ -20,8 +20,6 @@ int main() {
         int L = data.size(); //Seta L como o total de dados digitados. (Ex: L = total de estilos músicais citados pelo user)
         
         Realiza os cálculos necessãrios;
-        
-        Seta os dados no vector data;
     */
     
     /*
