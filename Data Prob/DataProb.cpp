@@ -24,6 +24,7 @@ int main() {
         Seta os dados no vector data;
     */
     
+    /*
     string s[(L*COL)];
     
     for(int i = 0, pos = 0; i < L; i++) {
@@ -35,17 +36,26 @@ int main() {
     }
     
     drawTable(L, s);
+    */
+    
+    drawTable(L, data);
 }
 
-void drawTable(int L, string *s) {
+void drawTable(int L, vector<Data> data) {
     cout << " | ";
     for(int i = 0; i < COL; i++)
         cout << lineData[i] << " | ";
     
     cout << endl;
     for(int i = 0, pos = 0; i < L, i++) {
-        for(int j = 0; j < COL; j++)
-            cout s[pos++] << " | ";
+        cout << " | ";
+        for(int j = 0; j < COL; j++) {
+            cout data[i].getName()       << " | "
+              << data[i].getFreqAbs()    << " | "
+              << data[i].getFreqRel()    << " | "
+              << data[i].getFreqRelPer() << " | "
+              << data[i].getFreqRelAc()  << " | ";
+        }
             
         cout << endl;
     }
