@@ -1,58 +1,113 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <algorithm>
 #include "Data.h"
 
 #define COL 5
 
-string lineData[COL] = {"Data Type", "Freq.Abs.", "Freq.Rel.", "Freq.Rel.(%)", "Freq.Rel.Ac."};
+string lineData[] = {" |  Data Type ", " |  Freq.Abs. ", " | Freq.Rel. ", "|  Freq.Rel.(%)", " | Freq.Rel.Ac. |"};
 
-void drawTable(int, vector<Data>);
+bool search(vector<int>, int);
+int numOf(vector<int>, int);
+void drawTable(vector<Data>, int, int, int, int, int);
 
 int main() {
+    int L = 0;
+    
+    float sumFreqRel,
+          sumFreqRelPer,
+          sumFreqRelAc;
+        
+    sumFreqRel = sumFreqRelPer = sumFreqRelAc = 0;
+        
     vector<Data> data;
+    vector<int> dataN;
+    vector<int> dataName;
+    Data *dataT;
     
-    /*
-        Recebe Dados do Usuário;
+    /* Recieving user data files */
+    for(string s; 1; L++) {
+        cout << "Digite o " << (L+1) << "º dado ou \"exit\" para sair: ";
+        cin >> s;
+        cin.ignore();
         
-        int L = data.size(); //Seta L como o total de dados digitados. (Ex: L = total de estilos músicais citados pelo user)
+        if(!s.compare("exit"))
+            break;
         
-        Realiza os cálculos necessãrios;
-    */
-    
-    /*
-    string s[(L*COL)];
-    
-    for(int i = 0, pos = 0; i < L; i++) {
-        s[pos++] = data[i].getName();
-        s[pos++] = data[i].getFreqAbs();
-        s[pos++] = data[i].getFreqRel();
-        s[pos++] = data[i].getFreqRelPer();
-        s[pos++] = data[i].getFreqRelAc();
+        dataN.push_back(stoi(s));         // stoi() func. needs C11 compiler
+        sort(dataN.begin(), dataN.end()); // Sorting the vector dataN
     }
+    /* End Of Recieving Data */
     
-    drawTable(L, s);
-    */
+    /* Setting Name */
+    for(int i = 0; i < dataN.size(); i++)
+        if(!search(dataName, dataN[i]))
+            dataName.push_back(dataN[i]);
+    /* End Of Set Name */
     
-    drawTable(L, data);
+    /* Setting Atributes */
+    for(int i = 0; i < dataName.size(); i++) {
+        dataT = new Data();
+        dataT->setName(dataName[i]);
+        dataT->setFreqAbs(numOf(dataN, dataT->getName()));
+        dataT->calcFreqRel(L);
+        dataT->calcFreqRelPer(L);
+        data.push_back(*dataT);
+        
+        /* Sum */
+        sumFreqRel    += dataT->getFreqRel();
+        sumFreqRelPer += dataT->getFreqRelPer();
+//         sumFreqRelAc  += dataT->getFreqRelAc();
+        /* End Of Sum */
+    }
+    /* End Of Set Atributes */
+
+    /* Drawing Table */
+    drawTable(data, dataName.size(), dataN.size(), sumFreqRel, sumFreqRelPer, sumFreqRelAc);
 }
 
-void drawTable(int L, vector<Data> data) {
-    cout << " | ";
-    for(int i = 0; i < COL; i++)
-        cout << lineData[i] << " | ";
+bool search(vector<int> data, int num) {
+    for(int i = 0; i < data.size(); i++) {
+        if(num == data[i])
+            return true;
+    }
+    
+    return false;
+}
+
+int numOf(vector<int> data, int num) {
+    int j = 0;
+    
+    for(int i = 0; i < data.size(); i++)
+        if(num == data[i])
+            j++;
+        
+    return j;
+}
+
+void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sumFreqRelPer, int sumFreqAc) {
+    stringstream sumAbs,
+                 sumRel,
+                 sumPer,
+                 sumAc;
+                 
+    sumAbs << setw(3) << sumFreqAbs;
+    sumRel << setw(3) << sumFreqRel;
+    sumPer << setw(3) << sumFreqRelPer;
+    sumAc  << setw(3) << sumFreqAc;
     
     cout << endl;
-    for(int i = 0, pos = 0; i < L, i++) {
-        cout << " | ";
-        for(int j = 0; j < COL; j++) {
-            cout data[i].getName()       << " | "
-              << data[i].getFreqAbs()    << " | "
-              << data[i].getFreqRel()    << " | "
-              << data[i].getFreqRelPer() << " | "
-              << data[i].getFreqRelAc()  << " | ";
-        }
-            
-        cout << endl;
-    }
+    for(int i = 0; i < COL; i++)
+        cout << lineData[i];
+
+    cout << endl;
+    for(int i = 0; i < L; i++) 
+        cout << data[i].stringTable() << endl;
+    
+    cout << "      Total          " << sumAbs.str()
+         << "           "           << sumRel.str()
+         << "          "            << sumPer.str()
+         << "            "           << sumAc.str() 
+         << "       "                << endl << endl;
 }
