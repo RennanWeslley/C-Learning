@@ -10,16 +10,15 @@ string lineData[] = {" |  Data Type ", " |  Freq.Abs. ", " | Freq.Rel. ", "|  Fr
 
 bool search(vector<int>, int);
 int numOf(vector<int>, int);
-void drawTable(vector<Data>, int, int, int, int, int);
+void drawTable(vector<Data>, int, int, int, int);
 
 int main() {
     int L = 0;
     
     float sumFreqRel,
-          sumFreqRelPer,
-          sumFreqRelAc;
+          sumFreqRelPer;
         
-    sumFreqRel = sumFreqRelPer = sumFreqRelAc = 0;
+    sumFreqRel = sumFreqRelPer = 0;
         
     vector<Data> data;
     vector<int> dataN;
@@ -35,7 +34,7 @@ int main() {
         if(!s.compare("exit"))
             break;
         
-        dataN.push_back(stoi(s));         // stoi() func. needs C11 compiler
+        dataN.push_back(stoi(s));         // stoi() func. needs a C11 compiler
         sort(dataN.begin(), dataN.end()); // Sorting the vector dataN
     }
     /* End Of Recieving Data */
@@ -54,19 +53,20 @@ int main() {
         dataT->calcFreqRel(L);
         dataT->calcFreqRelPer(L);
         data.push_back(*dataT);
+        data[i].calcFreqRelAc(data, i);
         
         /* Sum */
         sumFreqRel    += dataT->getFreqRel();
         sumFreqRelPer += dataT->getFreqRelPer();
-//         sumFreqRelAc  += dataT->getFreqRelAc();
         /* End Of Sum */
     }
     /* End Of Set Atributes */
 
     /* Drawing Table */
-    drawTable(data, dataName.size(), dataN.size(), sumFreqRel, sumFreqRelPer, sumFreqRelAc);
+    drawTable(data, dataName.size(), dataN.size(), sumFreqRel, sumFreqRelPer);
 }
 
+/* Returns true if the num was on the vector data otherwise returns false */
 bool search(vector<int> data, int num) {
     for(int i = 0; i < data.size(); i++) {
         if(num == data[i])
@@ -76,6 +76,7 @@ bool search(vector<int> data, int num) {
     return false;
 }
 
+/* Returns the index of the num in the vector data */
 int numOf(vector<int> data, int num) {
     int j = 0;
     
@@ -86,7 +87,8 @@ int numOf(vector<int> data, int num) {
     return j;
 }
 
-void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sumFreqRelPer, int sumFreqAc) {
+/* Draw the Table */
+void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sumFreqRelPer) {
     stringstream sumAbs,
                  sumRel,
                  sumPer,
@@ -94,8 +96,8 @@ void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sum
                  
     sumAbs << setw(3) << sumFreqAbs;
     sumRel << setw(3) << sumFreqRel;
-    sumPer << setw(3) << sumFreqRelPer;
-    sumAc  << setw(3) << sumFreqAc;
+    sumPer << setw(3) << setfill('0') << sumFreqRelPer;
+    sumAc  << setw(3) << data[data.size() - 1].getFreqRelAc();
     
     cout << endl;
     for(int i = 0; i < COL; i++)
@@ -107,7 +109,7 @@ void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sum
     
     cout << "      Total          " << sumAbs.str()
          << "           "           << sumRel.str()
-         << "          "            << sumPer.str()
-         << "            "           << sumAc.str() 
-         << "       "                << endl << endl;
+         << "           "           << sumPer.str()
+         << "              "        << sumAc.str() 
+         << endl << endl;
 }

@@ -18,18 +18,6 @@ class Data {
               freqRelAc;
 
     public:
-        /*
-        Data(){}
-
-        Data(string name, float freqAbs, float freqRel, float freqRelPer, float freqRelAc) {
-            setName(name);
-            setFreqAbs(freqAbs);
-            setFreqRel(freqRel);
-            setFreqRelPer(freqRelPer);
-            setFreqRelAc(freqRelAc);
-        }
-        */
-
         void setName(int name) {
             this->name = name;
         }
@@ -52,12 +40,21 @@ class Data {
 
         void calcFreqRel(int L) {
             for(int i = 0; i < L; i++)
-                setFreqRel((float) freqAbs/L);
+                freqRel = (float) freqAbs/L;
         }
 
         void calcFreqRelPer(int L) {
             for(int i = 0; i < L; i++)
-                setFreqRelPer(freqRel * 100);
+                freqRelPer = freqRel * 100;
+        }
+        
+        void calcFreqRelAc(vector<Data> data, int pos) {
+            if(!pos) {
+                freqRelAc = freqRelPer;
+                return;
+            }
+            
+            freqRelAc = data[(pos-1)].getFreqRelAc() + freqRelPer;
         }
 
         int getName() {
@@ -90,8 +87,8 @@ class Data {
             name       << setw(3) << this->name;
             freqAbs    << setw(3) << this->freqAbs;
             freqRel    << setw(3) << fixed << setprecision(3) << this->freqRel;
-            freqRelPer << setw(3) << fixed << setprecision(2) << this->freqRelPer;
-            freqRelAc  << setw(3) << fixed << setprecision(2) << this->freqRelAc;
+            freqRelPer << setw(5) << fixed << setprecision(2) << this->freqRelPer;
+            freqRelAc  << setw(5) << fixed << setprecision(2) << this->freqRelAc;
                 
             return "       "
                    + name.str()       + "           "
