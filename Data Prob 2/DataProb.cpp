@@ -10,7 +10,6 @@
 string lineData[] = {" |  Data Type ", " |  Freq.Abs. ", " | Freq.Rel. ", "|  Freq.Rel.(%)", " | Freq.Rel.Ac. |"};
 
 bool search(vector<double>, double);
-int numOf(vector<double>, double);
 void drawTable(vector<Data>, double, double, double, double, double);
 int between(vector<double>, double, double);
 
@@ -97,17 +96,6 @@ bool search(vector<double> data, double num) {
     }
 
     return false;
-}
-
-/* Returns the index of the num in the vector data */
-int numOf(vector<double> data, double num) {
-    int j = 0;
-
-    for(int i = 0; i < data.size(); i++)
-        if(num == data[i])
-            j++;
-
-    return j;
 }
 
 /* Returns the total numbers between num and numInt */
