@@ -55,7 +55,7 @@ int main() {
     /* End of Set aux values */
     
     /* Setting Atributes */
-    for(int i = 0; i < dataN.size(); i++) {
+    for(int i = 0; i < L; i++) {
         dataT = new Data();
         double aux;
         
@@ -81,9 +81,9 @@ int main() {
         /* End Of Sum */
     }
     /* End Of Set Atributes */
-
+    
     /* Drawing Table */
-    drawTable(data, classes, intervalo, dataN.size(), sumFreqRel, sumFreqRelPer);
+    drawTable(data, classes, intervalo, L, sumFreqRel, sumFreqRelPer);
 
     return 0;
 }
