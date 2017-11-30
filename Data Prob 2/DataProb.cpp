@@ -18,10 +18,10 @@ int main() {
     int L = 0;
 
     double sumFreqRel,
-          sumFreqRelPer,
-          classes,
-          ampTotal,
-          intervalo;
+           sumFreqRelPer,
+           classes,
+           ampTotal,
+           intervalo;
 
     sumFreqRel = sumFreqRelPer = 0;
 
@@ -49,15 +49,18 @@ int main() {
     }
     /* End Of Recieving Data */
     
-    classes = sqrt(L);
+    /* Setting aux values */
+    classes = sqrt(L); // sqrt is Square Tree
     ampTotal = dataN[L-1] - dataN[0];
     intervalo = (double) ampTotal/classes;
+    /* End of Set aux values */
     
     /* Setting Atributes */
     for(int i = 0; i < dataN.size(); i++) {
         dataT = new Data();
         double aux;
         
+        /* If i == 0 */
         if(!i) {
             dataT->setName(dataN[i]);
             dataT->setFreqAbs(between(dataN, dataT->getName(), dataT->getName() + intervalo));
@@ -107,6 +110,7 @@ int numOf(vector<double> data, double num) {
     return j;
 }
 
+/* Returns the total numbers between num and numInt */
 int between(vector<double> data, double num, double numInt) {
     int count = 0;
     
@@ -139,8 +143,8 @@ void drawTable(vector<Data> data, double classes, double intervalo, double sumFr
         cout << data[i].stringTable(intervalo) << endl;
 
     cout << "      Total        " << sumAbs.str()
-         << "           "           << sumRel.str()
-         << "           "           << sumPer.str()
-         << "             "        << sumAc.str()
+         << "           "         << sumRel.str()
+         << "           "         << sumPer.str()
+         << "             "       << sumAc.str()
          << endl << endl;
 }
