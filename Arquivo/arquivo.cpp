@@ -36,7 +36,7 @@ int main() {
 
     s = "";
 
-    for(int i = 1, j = 0, n; i < sz; j = 0, n = 0, s = "", i++) {
+    for(int i = sz-1, j = 0, n; i > 0; j = 0, n = 0, s = "", i--) {
         while(1) {
             c = getc(f);
 
@@ -70,8 +70,13 @@ int main() {
 
     for(int i = 0; i < sz; printf("\n"), i++)
         for(int j = 0; j < sz; j++)
-            //if(arr[i][j])
+            if(arr[i][j])
                 printf("%5d ", arr[i][j]);
+
+    printf("\n\n");
+
+    for(int i = 0, j = 0; i < sz; i++, j++)
+        printf("%d ", arr[i][j]);
 
     printf("\n\n");
 
