@@ -2,7 +2,7 @@
 #include <sstream>
 
 int main() {
-    FILE *f = fopen("dij20.txt", "r");
+    FILE *f = fopen("dij10.txt", "r");
 
     if(!f) {
         printf("Arquivo nao pode ser aberto.\n");
@@ -25,7 +25,6 @@ int main() {
     std::istringstream num(s);
 
     num >> sz;
-    sz--;
 
     int arr[sz][sz];
 
@@ -33,9 +32,11 @@ int main() {
         for(int j = 0; j < sz; j++)
             arr[i][j] = 0;
 
+    arr[0][0] = sz;
+
     s = "";
 
-    for(int i = 0, j = 0, n; i < sz; j = 0, n = 0, s = "", i++) {
+    for(int i = 1, j = 0, n; i < sz; j = 0, n = 0, s = "", i++) {
         while(1) {
             c = getc(f);
 
@@ -69,7 +70,7 @@ int main() {
 
     for(int i = 0; i < sz; printf("\n"), i++)
         for(int j = 0; j < sz; j++)
-            if(arr[i][j])
+            //if(arr[i][j])
                 printf("%5d ", arr[i][j]);
 
     printf("\n\n");
