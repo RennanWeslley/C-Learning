@@ -12,10 +12,10 @@ int main() {
     g[1] = new Retangulo(4, 6);
     g[2] = new Circulo  (5);
 
-    for(int i = 0; i < 3; g[i++]->calcArea());
-
-    for(int i = 0; i < 3;)
+    for(int i = 0; i < 3;) {
+        g[i]->calcArea()
         std::cout << "Area: " << g[i++]->getArea() << std::setprecision(2) << std::endl << std::endl;
+    }
 
 
     return 0;
