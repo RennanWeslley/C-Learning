@@ -52,14 +52,14 @@ int main() {
     /* End Of Set Name */
 
     /* Setting Atributes */
-    for(int i = 0; i < dataName.size(); i++) {
+    for(int i = 0; i < dataName.size();) {
         dataT = new Data();
         dataT->setName(dataName[i]);
         dataT->setFreqAbs(numOf(dataN, dataT->getName()));
         dataT->calcFreqRel(L);
         dataT->calcFreqRelPer(L);
         data.push_back(*dataT);
-        data[i].calcFreqRelAc(data, i);
+        data[i++].calcFreqRelAc(data, i);
 
         /* Sum */
         sumFreqRel    += dataT->getFreqRel();
@@ -76,8 +76,8 @@ int main() {
 
 /* Returns true if the num was on the vector data otherwise returns false */
 bool search(vector<int> data, int num) {
-    for(int i = 0; i < data.size(); i++) {
-        if(num == data[i])
+    for(int i = 0; i < data.size();) {
+        if(num == data[i++])
             return true;
     }
 
@@ -88,8 +88,8 @@ bool search(vector<int> data, int num) {
 int numOf(vector<int> data, int num) {
     int j = 0;
 
-    for(int i = 0; i < data.size(); i++)
-        if(num == data[i])
+    for(int i = 0; i < data.size();)
+        if(num == data[i++])
             j++;
 
     return j;
@@ -108,12 +108,12 @@ void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sum
     sumAc  << setw(3) << data[data.size() - 1].getFreqRelAc();
 
     cout << endl;
-    for(int i = 0; i < COL; i++)
-        cout << lineData[i];
+    for(int i = 0; i < COL;)
+        cout << lineData[i++];
 
     cout << endl;
-    for(int i = 0; i < L; i++)
-        cout << data[i].stringTable() << endl;
+    for(int i = 0; i < L;)
+        cout << data[i++].stringTable() << endl;
 
     cout << "      Total          " << sumAbs.str()
          << "           "           << sumRel.str()
@@ -121,3 +121,4 @@ void drawTable(vector<Data> data, int L, int sumFreqAbs, int sumFreqRel, int sum
          << "              "        << sumAc.str()
          << endl << endl;
 }
+
