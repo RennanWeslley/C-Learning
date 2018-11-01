@@ -13,7 +13,7 @@ int main() {
     g[2] = new Circulo  (5);
 
     for(int i = 0; i < 3;) {
-        g[i]->calcArea()
+        g[i]->calcArea();
         std::cout << "Area: " << g[i++]->getArea() << std::setprecision(2) << std::endl << std::endl;
     }
 
